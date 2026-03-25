@@ -74,7 +74,7 @@ const ProductCard = ({
               <span className="text-gray-500 text-sm line-through">
                 {Number(price).toFixed()}đ
               </span>
-              <span className="text-lg font-bold text-red-500">
+              <span className="text-xl font-bold text-red-500">
                 {Number(specialPrice).toFixed()}đ
               </span>
             </div>
