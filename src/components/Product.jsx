@@ -3,6 +3,8 @@ import ProductCard from "./ProductCard";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchProducts } from "../store/actions";
+import Filter from "./Filter";
+import useProductFilter from "../hooks/useProductFilter";
 
 const Products = () => {
     
@@ -11,9 +13,11 @@ const Products = () => {
     const {products} = useSelector((state) => state.products);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(fetchProducts());
-    }, [dispatch]);
+    useProductFilter();
+
+    // useEffect(() => {
+    //     dispatch(fetchProducts());
+    // }, [dispatch]);
 
 
     // const products = [
@@ -43,6 +47,7 @@ const Products = () => {
 
     return (
         <div className = "lg:px-14 sm:px-6 px-4 py-14 2xl:w-[90%] 2xl:mx-auto">
+            <Filter />
             {isLoading ? (
                 <p>Loading...</p>
             ) : errorMessage ? (
