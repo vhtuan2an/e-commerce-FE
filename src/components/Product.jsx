@@ -2,22 +2,28 @@ import { FaExclamationTriangle } from "react-icons/fa";
 import ProductCard from "./ProductCard";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { fetchProducts } from "../store/actions";
+import { fetchCategories } from "../store/actions";
 import Filter from "./Filter";
 import useProductFilter from "../hooks/useProductFilter";
+import Loader from "./Loader";
+import { Pagination } from "@mui/material";
+import PaginationComponent from "./PaginationComponent";
 
 const Products = () => {
     
     const { isLoading, errorMessage } = useSelector((state) => state.errors);
+    const load = true;
     
-    const {products} = useSelector((state) => state.products);
+    const {products, categories, pagination} = useSelector(
+        (state) => state.products
+    );
     const dispatch = useDispatch();
 
     useProductFilter();
 
-    // useEffect(() => {
-    //     dispatch(fetchProducts());
-    // }, [dispatch]);
+    useEffect(() => {
+        dispatch(fetchCategories());
+    }, [dispatch]);
 
 
     // const products = [
@@ -47,9 +53,9 @@ const Products = () => {
 
     return (
         <div className = "lg:px-14 sm:px-6 px-4 py-14 2xl:w-[90%] 2xl:mx-auto">
-            <Filter />
+            <Filter categories={categories ? categories : []} />
             {isLoading ? (
-                <p>Loading...</p>
+                <Loader text={"Products Loading"} />
             ) : errorMessage ? (
                 <p className="flex justify-center items-center h-50">
                     <FaExclamationTriangle className="text-red-500 text-2xl mr-2" />
@@ -69,6 +75,10 @@ const Products = () => {
             )
             
             }
+            <PaginationComponent 
+                totalPages={pagination?.totalPages} 
+                shape="circle" 
+                className="flex justify-center mt-6" />
         
         </div>
     ) 

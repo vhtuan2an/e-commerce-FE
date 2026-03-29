@@ -7,12 +7,8 @@ import { FaArrowUp } from "react-icons/fa";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
 
-const Filter = () => {
-    const categories = [
-        {categoryId: 1, categoryName: 'Books'},
-        {categoryId: 2, categoryName: 'Clothing'},
-        {categoryId: 3, categoryName: 'Electronics'},
-    ];
+const Filter = ({ categories }) => {
+    
 
     const [searchParams, setSearchParams] = useSearchParams();
     const pathName = useLocation().pathname;
