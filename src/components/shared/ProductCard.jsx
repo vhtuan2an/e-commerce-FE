@@ -59,15 +59,15 @@ const ProductCard = ({
             specialPrice,
           });
           }}
-          className="text-lg font-semibold mb-2 cursor-pointer"
+          className="text-lg font-semibold mb-2 cursor-pointer truncate"
         >
           {productName}
         </h2>
-        <div className="min-h-20 max-h-20">
-          <p className="text-gray-600 text-sm mb-4 overflow-hidden">
+        
+          <p className="text-gray-600 text-sm mb-4 overflow-hidden truncate">
             {description}
           </p>
-        </div>
+        
         <div className="flex items-center justify-between">
           {specialPrice ? (
             <div className="flex flex-col">
